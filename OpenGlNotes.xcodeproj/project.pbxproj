@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		22337BE327AEFFF800EC9947 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22337BE227AEFFF800EC9947 /* main.cpp */; };
+		22337BEB27AF01E700EC9947 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22337BEA27AF01E700EC9947 /* OpenGL.framework */; };
+		22337BF127AF05D800EC9947 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22337BF027AF05D800EC9947 /* libglfw.3.3.dylib */; };
+		22337BF427AF0AA600EC9947 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22337BF327AF0AA600EC9947 /* libGLEW.2.2.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		22337BDF27AEFFF800EC9947 /* OpenGlNotes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGlNotes; sourceTree = BUILT_PRODUCTS_DIR; };
 		22337BE227AEFFF800EC9947 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		22337BEA27AF01E700EC9947 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		22337BEC27AF020B00EC9947 /* lib-x86_64 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "lib-x86_64"; path = "glfw/lib-x86_64"; sourceTree = "<group>"; };
+		22337BEE27AF023300EC9947 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = "glfw/lib-universal/libglfw.3.dylib"; sourceTree = "<group>"; };
+		22337BF027AF05D800EC9947 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../usr/local/Cellar/glfw/3.3.6/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		22337BF227AF06CB00EC9947 /* OpenGlNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenGlNotes.entitlements; sourceTree = "<group>"; };
+		22337BF327AF0AA600EC9947 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +41,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22337BF427AF0AA600EC9947 /* libGLEW.2.2.0.dylib in Frameworks */,
+				22337BF127AF05D800EC9947 /* libglfw.3.3.dylib in Frameworks */,
+				22337BEB27AF01E700EC9947 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +55,7 @@
 			children = (
 				22337BE127AEFFF800EC9947 /* OpenGlNotes */,
 				22337BE027AEFFF800EC9947 /* Products */,
+				22337BE927AF01E700EC9947 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +70,22 @@
 		22337BE127AEFFF800EC9947 /* OpenGlNotes */ = {
 			isa = PBXGroup;
 			children = (
+				22337BF227AF06CB00EC9947 /* OpenGlNotes.entitlements */,
 				22337BE227AEFFF800EC9947 /* main.cpp */,
 			);
 			path = OpenGlNotes;
+			sourceTree = "<group>";
+		};
+		22337BE927AF01E700EC9947 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22337BF327AF0AA600EC9947 /* libGLEW.2.2.0.dylib */,
+				22337BF027AF05D800EC9947 /* libglfw.3.3.dylib */,
+				22337BEE27AF023300EC9947 /* libglfw.3.dylib */,
+				22337BEC27AF020B00EC9947 /* lib-x86_64 */,
+				22337BEA27AF01E700EC9947 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,9 +266,20 @@
 		22337BE727AEFFF800EC9947 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OpenGlNotes/OpenGlNotes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6V9N93FD5H;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glfw/3.3.6/include,
+					/usr/local/Cellar/glew/2.2.0_1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/glfw/lib-universal",
+					/usr/local/Cellar/glfw/3.3.6/lib,
+					/usr/local/Cellar/glew/2.2.0_1/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -250,9 +287,20 @@
 		22337BE827AEFFF800EC9947 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OpenGlNotes/OpenGlNotes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6V9N93FD5H;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glfw/3.3.6/include,
+					/usr/local/Cellar/glew/2.2.0_1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/glfw/lib-universal",
+					/usr/local/Cellar/glfw/3.3.6/lib,
+					/usr/local/Cellar/glew/2.2.0_1/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
